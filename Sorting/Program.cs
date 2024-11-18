@@ -19,6 +19,13 @@ class Program
         ReyRom.Sorting.QuickSort(quickSortData, 0, quickSortData.Length - 1);
         stopwatch.Stop();
         Console.WriteLine($"Quick Sort Time: {stopwatch.ElapsedMilliseconds} ms");
+
+        // Insertion Sort
+        int[] insertionSortData = (int[])data.Clone();
+        stopwatch.Restart();
+        ReyRom.Sorting.InsertionSort(insertionSortData);
+        stopwatch.Stop();
+        Console.WriteLine($"InsertionSort Sort Time: {stopwatch.ElapsedMilliseconds} ms");
     }
 
     static int[] GenerateRandomArray(int size)

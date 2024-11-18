@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class Program
 {
     static void Main()
     {
         Console.WriteLine("Starting multi-threaded computation...");
-
-        int numberOfTasks = 10;
+        
+        int numberOfTasks = 10; //1 - однопоточный
         Task[] tasks = new Task[numberOfTasks];
+
+        Stopwatch stopwatch = Stopwatch.StartNew();
 
         for (int i = 0; i < numberOfTasks; i++)
         {
@@ -17,9 +21,16 @@ class Program
         }
 
         // Ждем завершения всех задач
-        Task.WaitAll(tasks);
 
+        Task.WaitAll(tasks);
+        
         Console.WriteLine("All tasks completed.");
+
+        stopwatch.Stop();
+
+        Console.WriteLine($"PerformComputation: {stopwatch.ElapsedMilliseconds} ms");
+        
+        
     }
 
     static void PerformComputation(int taskNumber)
